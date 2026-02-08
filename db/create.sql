@@ -3,7 +3,7 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE SCHEMA IF NOT EXISTS drive_wise;
 
 
-CREATE TABLE drive_wise.users (
+CREATE TABLE IF NOT EXISTS drive_wise.users (
                                   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
                                   email VARCHAR(255) UNIQUE,
@@ -61,3 +61,120 @@ CREATE TABLE IF NOT EXISTS drive_wise.trips (
                                                         REFERENCES drive_wise.users(id)
                                                         ON DELETE RESTRICT
 );
+
+CREATE TABLE IF NOT EXISTS drive_wise.telemetry_points (
+    -- автоматично растящо ID (не UUID, защото ще са МНОГО записи)
+                                                           id BIGSERIAL PRIMARY KEY,
+
+    -- към кой trip принадлежи точката
+                                                           trip_id UUID NOT NULL,
+
+    -- кога е записана точката от устройството
+                                                           recorded_at TIMESTAMPTZ NOT NULL,
+
+    -- кога сървърът я е получил
+                                                           received_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+    -- GPS координати
+                                                           lat DOUBLE PRECISION NOT NULL,
+                                                           lng DOUBLE PRECISION NOT NULL,
+
+    -- допълнителни данни (може да ги няма)
+                                                           speed_mps DOUBLE PRECISION,
+                                                           heading_deg DOUBLE PRECISION,
+                                                           accuracy_m DOUBLE PRECISION,
+
+    -- откъде идва точката
+                                                           source VARCHAR(20) NOT NULL
+                                                               CHECK (source IN ('GPS')),
+
+    -- връзка към trips
+                                                           CONSTRAINT fk_telemetry_trip
+                                                               FOREIGN KEY (trip_id)
+                                                                   REFERENCES drive_wise.trips(id)
+                                                                   ON DELETE CASCADE
+);
+
+
+
+
+CREATE TABLE drive_wise.driving_events (
+                                           id BIGSERIAL PRIMARY KEY,
+
+                                           trip_id UUID NOT NULL,
+                                           user_id UUID NOT NULL,
+
+                                           event_time TIMESTAMPTZ NOT NULL,
+
+                                           event_type VARCHAR(40) NOT NULL,
+
+                                           severity SMALLINT NOT NULL,
+
+                                           value DOUBLE PRECISION,
+
+                                           lat DOUBLE PRECISION,
+                                           lng DOUBLE PRECISION,
+
+                                           details JSONB,
+
+                                           CONSTRAINT fk_event_trip
+                                               FOREIGN KEY (trip_id)
+                                                   REFERENCES drive_wise.trips(id),
+
+                                           CONSTRAINT fk_event_user
+                                               FOREIGN KEY (user_id)
+                                                   REFERENCES drive_wise.users(id)
+);
+
+CREATE TABLE drive_wise.points_ledger (
+                                          id BIGSERIAL PRIMARY KEY,
+
+                                          user_id UUID NOT NULL,
+
+                                          trip_id UUID,
+
+                                          created_at TIMESTAMPTZ NOT NULL,
+
+                                          points_delta INTEGER NOT NULL,
+
+                                          reason VARCHAR(40) NOT NULL,
+
+                                          ref_event_id BIGINT,
+
+                                          metadata JSONB,
+
+                                          CONSTRAINT fk_ledger_user
+                                              FOREIGN KEY (user_id)
+                                                  REFERENCES drive_wise.users(id),
+
+                                          CONSTRAINT fk_ledger_trip
+                                              FOREIGN KEY (trip_id)
+                                                  REFERENCES drive_wise.trips(id),
+
+                                          CONSTRAINT fk_ledger_event
+                                              FOREIGN KEY (ref_event_id)
+                                                  REFERENCES drive_wise.driving_events(id)
+);
+
+CREATE TABLE IF NOT EXISTS drive_wise.rewards (
+                                                  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+                                                  name VARCHAR(120) NOT NULL,
+
+                                                  description TEXT,
+
+                                                  points_cost INTEGER NOT NULL,
+
+                                                  active BOOLEAN NOT NULL,
+
+                                                  stock INTEGER,
+
+                                                  partner VARCHAR(120),
+
+                                                  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+
+
+
+
