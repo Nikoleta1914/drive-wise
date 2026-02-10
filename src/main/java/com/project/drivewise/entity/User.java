@@ -1,5 +1,6 @@
 package com.project.drivewise.entity;
 
+import com.project.drivewise.entity.enums.UserStatus;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;

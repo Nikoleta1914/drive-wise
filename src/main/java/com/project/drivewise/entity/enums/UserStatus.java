@@ -1,4 +1,4 @@
-package com.project.drivewise.entity;
+package com.project.drivewise.entity.enums;
 
 public enum UserStatus {
 
