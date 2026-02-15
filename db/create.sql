@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS drive_wise.telemetry_points (
 
 
 
-CREATE TABLE drive_wise.driving_events (
+CREATE TABLE IF NOT EXISTS drive_wise.driving_events (
                                            id BIGSERIAL PRIMARY KEY,
 
                                            trip_id UUID NOT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE drive_wise.driving_events (
                                                    REFERENCES drive_wise.users(id)
 );
 
-CREATE TABLE drive_wise.points_ledger (
+CREATE TABLE IF NOT EXISTS drive_wise.points_ledger (
                                           id BIGSERIAL PRIMARY KEY,
 
                                           user_id UUID NOT NULL,
@@ -173,6 +173,35 @@ CREATE TABLE IF NOT EXISTS drive_wise.rewards (
 
     created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     );
+
+CREATE TABLE IF NOT EXISTS drive_wise.redemptions
+(
+    id           uuid PRIMARY KEY     DEFAULT gen_random_uuid(),
+
+    user_id      uuid        NOT NULL,
+    reward_id    uuid        NOT NULL,
+
+    created_ad   TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+    status       VARCHAR(20) NOT NULL,
+    CHECK ( status IN ('PENDING', 'FULFILLED', 'CANCELLED')),
+
+    points_spent INTEGER     NOT NULL,
+
+    external_ref VARCHAR(255),
+
+    metadata     JSONB,
+
+    CONSTRAINT fk_redemption_user
+        FOREIGN KEY (user_id)
+            REFERENCES drive_wise.users (id)
+            ON DELETE RESTRICT,
+
+    CONSTRAINT fk_redemption_reward
+        FOREIGN KEY (reward_id)
+            REFERENCES drive_wise.rewards (id)
+            ON DELETE RESTRICT
+);
 
 
 
