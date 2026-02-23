@@ -39,13 +39,13 @@ public class Trip {
     private Double destinationLat;
 
     @Column(name = "destination_lng")
-    private Double destinationLgn;
+    private Double destinationLng;
 
-    @Column(name = "route_destination_m")
-    private Integer routeDestinationM;
+    @Column(name = "actual_distance_m")
+    private Integer actualDistanceM;
 
-    @Column(name = "route_destination_s")
-    private Integer routeDestinationS;
+    @Column(name = "actual_duration_s")
+    private Integer actualDurationS;
 
     @Column(name = "route_provider")
     private String routeProvider;
@@ -53,11 +53,9 @@ public class Trip {
     @Column(name = "route_polyline")
     private String routePolyline;
 
+
     @Column(name = "route_computed_at")
     private OffsetDateTime routeComputedAt;
-
-    @Column(name = "actual_distanceM")
-    private Integer actualDistanceM;
 
     @Column(name = "actual_distance_s")
     private Integer actualDistanceS;
@@ -132,28 +130,20 @@ public class Trip {
         this.destinationLat = destinationLat;
     }
 
-    public Double getDestinationLgn() {
-        return destinationLgn;
+    public Double getDestinationLng() {
+        return destinationLng;
     }
 
-    public void setDestinationLgn(Double destinationLgn) {
-        this.destinationLgn = destinationLgn;
+    public void setDestinationLng(Double destinationLng) {
+        this.destinationLng = destinationLng;
     }
 
-    public Integer getRouteDestinationM() {
-        return routeDestinationM;
+    public Integer getActualDurationS() {
+        return actualDurationS;
     }
 
-    public void setRouteDestinationM(Integer routeDestinationM) {
-        this.routeDestinationM = routeDestinationM;
-    }
-
-    public Integer getRouteDestinationS() {
-        return routeDestinationS;
-    }
-
-    public void setRouteDestinationS(Integer routeDestinationS) {
-        this.routeDestinationS = routeDestinationS;
+    public void setActualDurationS(Integer actualDurationS) {
+        this.actualDurationS = actualDurationS;
     }
 
     public String getRouteProvider() {

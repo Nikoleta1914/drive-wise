@@ -270,7 +270,7 @@ CREATE TABLE IF NOT EXISTS drive_wise.points_ledger
     created_at
     TIMESTAMPTZ
     NOT
-    NULL,
+    NULL DEFAULT now(),
 
     points_delta
     INTEGER
@@ -363,7 +363,7 @@ CREATE TABLE IF NOT EXISTS drive_wise.redemptions
     user_id uuid NOT NULL,
     reward_id uuid NOT NULL,
 
-    created_ad TIMESTAMPTZ NOT NULL DEFAULT now
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now
 (
 ),
 
