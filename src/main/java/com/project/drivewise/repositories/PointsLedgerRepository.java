@@ -11,8 +11,8 @@ import java.util.UUID;
 
 public interface PointsLedgerRepository extends JpaRepository<PointsLedger, Long> {
 
-    List<PointsLedger> findByUser_Id(UUID userId);
-    List<PointsLedger> findByUser_IdAndReason(UUID userId, PointsReason reason);
+    List<PointsLedger> findByUserId(UUID userId);
+    List<PointsLedger> findByUserIdAndReason(UUID userId, PointsReason reason);
 
     @Query("select coalesce(sum(p.pointsDelta),0) from PointsLedger p where p.user.id = :userId")
     int getUserBalance(@Param("userId") UUID userId);

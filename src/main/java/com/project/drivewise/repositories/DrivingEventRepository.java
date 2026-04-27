@@ -10,16 +10,16 @@ import java.util.UUID;
 
 public interface DrivingEventRepository extends JpaRepository<DrivingEvent, Long> {
 
-    List<DrivingEvent> findByUser_Id(UUID userId);
+    List<DrivingEvent> findByUserId(UUID userId);
 
-    List<DrivingEvent> findByTrip_Id(UUID tripId);
+    List<DrivingEvent> findByTripId(UUID tripId);
 
     List<DrivingEvent> findByEventType(DrivingEventType eventType);
 
     List<DrivingEvent> findByEventTimeBetween(OffsetDateTime from,
                                               OffsetDateTime to);
 
-    List<DrivingEvent> findByUser_IdAndEventTypeAndEventTimeBetween(
+    List<DrivingEvent> findByUserIdAndEventTypeAndEventTimeBetween(
             UUID userId, DrivingEventType eventType, OffsetDateTime from,
             OffsetDateTime to
     );
