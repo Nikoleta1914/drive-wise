@@ -28,14 +28,14 @@ public class RewardRedemption {
     private Reward reward;
 
     @Column(name = "created_at", nullable = false)
-    private OffsetDateTime created_at;
+    private OffsetDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     private RedemptionStatus status;
 
     @Column(name = "points_spent", nullable = false)
-    private Integer points_spent;
+    private Integer pointsSpent;
 
     @Column(name = "external_ref", length = 255)
     private String externalRef;
@@ -72,12 +72,12 @@ public class RewardRedemption {
         this.reward = reward;
     }
 
-    public OffsetDateTime getCreated_at() {
-        return created_at;
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(OffsetDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public RedemptionStatus getStatus() {
@@ -88,12 +88,12 @@ public class RewardRedemption {
         this.status = status;
     }
 
-    public Integer getPoints_spent() {
-        return points_spent;
+    public Integer getPointsSpent() {
+        return pointsSpent;
     }
 
-    public void setPoints_spent(Integer points_spent) {
-        this.points_spent = points_spent;
+    public void setPointsSpent(Integer pointsSpent) {
+        this.pointsSpent = pointsSpent;
     }
 
     public String getExternalRef() {

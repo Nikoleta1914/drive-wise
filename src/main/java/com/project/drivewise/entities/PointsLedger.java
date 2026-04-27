@@ -22,8 +22,8 @@ public class PointsLedger {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trip_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY,optional = true)
+    @JoinColumn(name = "trip_id")
     private Trip trip;
 
     @Column(name = "created_at", nullable = false)
