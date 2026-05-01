@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.UUID;
 
-public interface RedemptionRepository extends JpaRepository<RewardRedemption, UUID> {
+public interface RewardRedemptionRepository extends JpaRepository<RewardRedemption, UUID> {
 
     List<RewardRedemption> findByUser_Id(UUID userId);
     List<RewardRedemption> findByUser_IdAndStatus(UUID userId, RedemptionStatus status);

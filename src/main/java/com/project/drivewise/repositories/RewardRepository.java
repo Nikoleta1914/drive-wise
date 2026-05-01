@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.UUID;
 
-public interface RewardRepository extends JpaRepository<RewardRedemption, UUID> {
+public interface RewardRepository extends JpaRepository<Reward, UUID> {
 
     List<Reward> findByActiveTrue();
     List<Reward> findByActiveTrueAndPointsCostLessThanEqual(Integer pointsCost);
