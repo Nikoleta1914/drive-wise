@@ -7,13 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface PointsLedgerRepository extends JpaRepository<PointsLedger, Long> {
 
-    List<PointsLedger> findByUserId(UUID userId);
-    List<PointsLedger> findByUserIdAndReason(UUID userId, PointsReason reason);
+    List<PointsLedger> findByUserId(long userId);
+    List<PointsLedger> findByUserIdAndReason(long userId, PointsReason reason);
 
     @Query("select coalesce(sum(p.pointsDelta),0) from PointsLedger p where p.user.id = :userId")
-    int getUserBalance(@Param("userId") UUID userId);
+    int getUserBalance(@Param("userId") long userId);
 }
