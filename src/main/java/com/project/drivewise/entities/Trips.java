@@ -4,20 +4,19 @@ import com.project.drivewise.entities.enums.TripStatus;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "trips", schema = "drive_wise")
-public class Trip {
+public class Trips {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private UUID id;
+    private long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private Users user;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -63,22 +62,22 @@ public class Trip {
     @Column(name = "score_total", nullable = false)
     private Integer scoreTotal;
 
-    public Trip() {
+    public Trips() {
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 

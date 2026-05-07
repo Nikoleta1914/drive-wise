@@ -1,17 +1,16 @@
 package com.project.drivewise.services;
 
 import com.project.drivewise.entities.Reward;
-import com.project.drivewise.entities.RewardRedemption;
-import com.project.drivewise.repositories.RewardRepository;
-import com.project.drivewise.services.contracts.RewardService;
+import com.project.drivewise.repositories.RewardsRepository;
+import com.project.drivewise.services.contracts.RewardsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RewardServiceImpl implements RewardService {
+public class RewardsServiceImpl implements RewardsService {
 
-    private RewardRepository rewardRepository;
+    private RewardsRepository rewardRepository;
 
     @Override
     public List<Reward> findAll() {
@@ -26,6 +25,10 @@ public class RewardServiceImpl implements RewardService {
     @Override
     public void delete(Reward reward) {
         rewardRepository.delete(reward);
+    }
 
+    @Override
+    public void deletedById(Long id) {
+        rewardRepository.deleteById(id);
     }
 }

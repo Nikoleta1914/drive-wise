@@ -5,10 +5,10 @@ import com.project.drivewise.repositories.DrivingEventRepository;
 import com.project.drivewise.services.contracts.DrivingEventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class DrivingEventServiceImpl implements DrivingEventService {
@@ -16,8 +16,13 @@ public class DrivingEventServiceImpl implements DrivingEventService {
     private Logger log = LoggerFactory.getLogger(DrivingEventServiceImpl.class);
     private DrivingEventRepository drivingEventRepository;
 
+    @Autowired
+    public DrivingEventServiceImpl(DrivingEventRepository drivingEventRepository) {
+        this.drivingEventRepository = drivingEventRepository;
+    }
+
     @Override
-    public List<DrivingEvent> findByUserId(UUID userId) {
+    public List<DrivingEvent> findByUserId(long userId) {
        return drivingEventRepository.findByUserId(userId);
     }
 
@@ -32,8 +37,8 @@ public class DrivingEventServiceImpl implements DrivingEventService {
     }
 
     @Override
-    public void delete(DrivingEvent drivingEvent) {
-        drivingEventRepository.delete(drivingEvent);
+    public void delete(long id) {
+        drivingEventRepository.deleteById(id);
         log.info("DrivingEvent deleted successfully");
 
     }

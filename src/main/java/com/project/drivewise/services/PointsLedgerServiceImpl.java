@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -20,6 +21,11 @@ public class PointsLedgerServiceImpl implements PointsLedgerService {
     @Override
     public List<PointsLedger> findAll() {
         return pointsLedgerRepository.findAll();
+    }
+
+    @Override
+    public Optional<PointsLedger> findById(Long pointsId) {
+        return pointsLedgerRepository.findById(pointsId);
     }
 
     @Override

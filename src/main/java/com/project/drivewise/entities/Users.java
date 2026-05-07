@@ -4,17 +4,16 @@ import com.project.drivewise.entities.enums.UserStatus;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users", schema = "drive_wise")
 
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private UUID id;
+    private long id;
 
     @Column(name = "email")
     private String email;
@@ -32,14 +31,14 @@ public class User {
     @Column(name = "status", nullable = false)
     private UserStatus status;
 
-    public User(){
+    public Users(){
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 

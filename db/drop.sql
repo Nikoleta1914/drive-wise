@@ -1,0 +1,2 @@
+DROP SCHEMA IF EXISTS drive_wise CASCADE;
+CREATE SCHEMA drive_wise;

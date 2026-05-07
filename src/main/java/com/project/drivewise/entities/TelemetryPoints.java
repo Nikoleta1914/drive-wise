@@ -7,7 +7,7 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "telemetry_points", schema = "drive_wise")
-public class TelemetryPoint {
+public class TelemetryPoints {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class TelemetryPoint {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "trip_id", nullable = false)
-    private Trip trip;
+    private Trips trip;
 
     @Column(name = "recorded_at", nullable = false)
     private OffsetDateTime recordedAt;
@@ -40,11 +40,11 @@ public class TelemetryPoint {
     private Double accuracyM;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "sourcer", nullable = false)
+    @Column(name = "source", nullable = false)
     private TelemetrySource source;
 
 
-    public TelemetryPoint() {
+    public TelemetryPoints() {
     }
 
     public Long getId() {
@@ -55,11 +55,11 @@ public class TelemetryPoint {
         this.id = id;
     }
 
-    public Trip getTrip() {
+    public Trips getTrip() {
         return trip;
     }
 
-    public void setTrip(Trip trip) {
+    public void setTrip(Trips trip) {
         this.trip = trip;
     }
 
