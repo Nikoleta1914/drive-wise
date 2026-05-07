@@ -14,7 +14,7 @@ import java.util.List;
 public class DrivingEventServiceImpl implements DrivingEventService {
 
     private Logger log = LoggerFactory.getLogger(DrivingEventServiceImpl.class);
-    private DrivingEventRepository drivingEventRepository;
+    private final DrivingEventRepository drivingEventRepository;
 
     @Autowired
     public DrivingEventServiceImpl(DrivingEventRepository drivingEventRepository) {

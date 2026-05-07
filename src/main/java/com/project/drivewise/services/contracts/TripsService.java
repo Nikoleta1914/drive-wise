@@ -4,12 +4,13 @@ import com.project.drivewise.entities.DrivingEvent;
 import com.project.drivewise.entities.Trips;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TripsService {
 
     List<Trips> findAll();
 
-    List<Trips> findByTripId(long tripId);
+    Optional<Trips> findById(Long id);
 
     Trips save(Trips trip);
 

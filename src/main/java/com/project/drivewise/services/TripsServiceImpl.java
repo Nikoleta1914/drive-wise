@@ -4,14 +4,21 @@ import com.project.drivewise.entities.DrivingEvent;
 import com.project.drivewise.entities.Trips;
 import com.project.drivewise.repositories.TripsRepository;
 import com.project.drivewise.services.contracts.TripsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TripsServiceImpl implements TripsService {
 
-    private TripsRepository tripsRepository;
+    private final TripsRepository tripsRepository;
+
+    @Autowired
+    public TripsServiceImpl(TripsRepository tripsRepository) {
+        this.tripsRepository = tripsRepository;
+    }
 
     @Override
     public List<Trips> findAll() {
@@ -19,9 +26,10 @@ public class TripsServiceImpl implements TripsService {
     }
 
     @Override
-    public List<Trips> findByTripId(long tripId) {
-        return tripsRepository.findByTripId(tripId);
+    public Optional<Trips> findById(Long id) {
+        return tripsRepository.findById(id);
     }
+
 
     @Override
     public Trips save(Trips trip) {

@@ -3,23 +3,31 @@ package com.project.drivewise.services;
 import com.project.drivewise.entities.Users;
 import com.project.drivewise.repositories.UsersRepository;
 import com.project.drivewise.services.contracts.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersServiceImpl implements UsersService {
 
-    private UsersRepository userRepository;
+    private final UsersRepository userRepository;
+
+    @Autowired
+    public UsersServiceImpl(UsersRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<Users> findAll() {
         return userRepository.findAll();
     }
 
+
     @Override
-    public List<Users> findByUserId(Long id) {
-        return userRepository.findByUserId(id);
+    public Optional<Users> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     @Override
@@ -36,4 +44,5 @@ public class UsersServiceImpl implements UsersService {
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
+
 }

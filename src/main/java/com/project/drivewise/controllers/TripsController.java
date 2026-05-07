@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api-trips")
@@ -24,8 +25,8 @@ public class TripsController {
     }
 
     @GetMapping("/{tripsId}")
-    public List<Trips> findById(@PathVariable long id){
-        return tripsService.findByTripId(id);
+    public Optional<Trips> findById(@PathVariable long id){
+        return tripsService.findById(id);
     }
 
     @PostMapping

@@ -3,6 +3,7 @@ package com.project.drivewise.services;
 import com.project.drivewise.entities.TelemetryPoints;
 import com.project.drivewise.repositories.TelemetryPointsRepository;
 import com.project.drivewise.services.contracts.TelemetryPointsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,12 @@ import java.util.List;
 @Service
 public class TelemetryPointsServiceImpl implements TelemetryPointsService {
 
-    private TelemetryPointsRepository telemetryPointRepository;
+    private final TelemetryPointsRepository telemetryPointRepository;
+
+    @Autowired
+    public TelemetryPointsServiceImpl(TelemetryPointsRepository telemetryPointRepository) {
+        this.telemetryPointRepository = telemetryPointRepository;
+    }
 
     @Override
     public List<TelemetryPoints> findAll() {

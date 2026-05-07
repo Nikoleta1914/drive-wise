@@ -3,6 +3,7 @@ package com.project.drivewise.services;
 import com.project.drivewise.entities.RewardRedemption;
 import com.project.drivewise.repositories.RewardRedemptionRepository;
 import com.project.drivewise.services.contracts.RewardRedemptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,12 @@ import java.util.List;
 @Service
 public class RewardRedemptionServiceImpl implements RewardRedemptionService {
 
-    private RewardRedemptionRepository rewardRedemptionRepository;
+    private final RewardRedemptionRepository rewardRedemptionRepository;
+
+    @Autowired
+    public RewardRedemptionServiceImpl(RewardRedemptionRepository rewardRedemptionRepository) {
+        this.rewardRedemptionRepository = rewardRedemptionRepository;
+    }
 
     @Override
     public List<RewardRedemption> findAll() {

@@ -26,7 +26,7 @@ public class PointsLedgerController {
         return pointsLedgerService.findAll();
     }
 
-    @GetMapping("/{Id}")
+    @GetMapping("/{id}")
     public Optional<PointsLedger> findById(@PathVariable Long id){
         return pointsLedgerService.findById(id);
     }
