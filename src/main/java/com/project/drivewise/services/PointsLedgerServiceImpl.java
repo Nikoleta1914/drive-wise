@@ -4,22 +4,34 @@ import com.project.drivewise.entities.PointsLedger;
 import com.project.drivewise.repositories.PointsLedgerRepository;
 import com.project.drivewise.services.contracts.PointsLedgerService;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
 public class PointsLedgerServiceImpl implements PointsLedgerService {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(PointsLedgerServiceImpl.class);
-    private PointsLedgerRepository pointsLedgerRepository;
+    private final PointsLedgerRepository pointsLedgerRepository;
 
     Logger logger = Logger.getLogger((PointsLedgerServiceImpl.class).getName());
+
+    @Autowired
+    public PointsLedgerServiceImpl(PointsLedgerRepository pointsLedgerRepository) {
+        this.pointsLedgerRepository = pointsLedgerRepository;
+    }
 
     @Override
     public List<PointsLedger> findAll() {
         return pointsLedgerRepository.findAll();
+    }
+
+    @Override
+    public Optional<PointsLedger> findById(Long pointsId) {
+        return pointsLedgerRepository.findById(pointsId);
     }
 
     @Override

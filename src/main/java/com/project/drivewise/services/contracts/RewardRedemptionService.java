@@ -10,5 +10,5 @@ public interface RewardRedemptionService {
 
     RewardRedemption save(RewardRedemption rewardRedemption);
 
-    void delete(RewardRedemption rewardRedemption);
+    void deleteById(Long id);
 }

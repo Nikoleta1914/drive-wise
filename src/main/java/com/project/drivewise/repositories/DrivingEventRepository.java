@@ -3,16 +3,17 @@ package com.project.drivewise.repositories;
 import com.project.drivewise.entities.DrivingEvent;
 import com.project.drivewise.entities.enums.DrivingEventType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.UUID;
 
+@Repository
 public interface DrivingEventRepository extends JpaRepository<DrivingEvent, Long> {
 
-    List<DrivingEvent> findByUserId(UUID userId);
+    List<DrivingEvent> findByUserId(long userId);
 
-    List<DrivingEvent> findByTripId(UUID tripId);
+    List<DrivingEvent> findByTripId(long tripId);
 
     List<DrivingEvent> findByEventType(DrivingEventType eventType);
 
@@ -20,7 +21,7 @@ public interface DrivingEventRepository extends JpaRepository<DrivingEvent, Long
                                               OffsetDateTime to);
 
     List<DrivingEvent> findByUserIdAndEventTypeAndEventTimeBetween(
-            UUID userId, DrivingEventType eventType, OffsetDateTime from,
+            long userId, DrivingEventType eventType, OffsetDateTime from,
             OffsetDateTime to
     );
 }

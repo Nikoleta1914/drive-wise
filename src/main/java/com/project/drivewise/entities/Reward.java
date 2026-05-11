@@ -3,7 +3,6 @@ package com.project.drivewise.entities;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "rewards", schema = "drive_wise")
@@ -12,7 +11,7 @@ public class Reward {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private UUID id;
+    private long id;
 
     @Column(name = "name", nullable = false, length = 120)
     private String name;
@@ -32,17 +31,17 @@ public class Reward {
     @Column(name = "partner", length = 120)
     private String partner;
 
-    @Column(name = "created_ad", nullable = false)
-    private OffsetDateTime createdAd;
+    @Column(name = "created_at", nullable = false)
+    private OffsetDateTime createdAt;
 
     public Reward(){
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -94,11 +93,11 @@ public class Reward {
         this.partner = partner;
     }
 
-    public OffsetDateTime getCreatedAd() {
-        return createdAd;
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedAd(OffsetDateTime createdAd) {
-        this.createdAd = createdAd;
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

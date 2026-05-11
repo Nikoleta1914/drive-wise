@@ -20,11 +20,11 @@ public class PointsLedger {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY,optional = true)
     @JoinColumn(name = "trip_id")
-    private Trip trip;
+    private Trips trip;
 
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
@@ -55,19 +55,19 @@ public class PointsLedger {
         this.id = id;
     }
 
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
-    public Trip getTrip() {
+    public Trips getTrip() {
         return trip;
     }
 
-    public void setTrip(Trip trip) {
+    public void setTrip(Trips trip) {
         this.trip = trip;
     }
 
