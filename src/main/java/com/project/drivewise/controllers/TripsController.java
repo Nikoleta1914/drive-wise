@@ -24,8 +24,8 @@ public class TripsController {
         return tripsService.findAll();
     }
 
-    @GetMapping("/{tripsId}")
-    public Optional<Trips> findById(@PathVariable long id){
+    @GetMapping("/{id}")
+    public Optional<Trips> findById(@PathVariable long id) {
         return tripsService.findById(id);
     }
 

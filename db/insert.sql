@@ -73,3 +73,20 @@ INSERT INTO drive_wise.redemptions (
 VALUES
     (1, 1, 'FULFILLED', 100),
     (2, 2, 'PENDING', 200);
+
+SELECT * FROM drive_wise.points_ledger;
+
+SELECT id, reason
+FROM drive_wise.points_ledger;
+
+UPDATE drive_wise.points_ledger
+SET reason = 'TRIP_BONUS'
+WHERE reason = 'TRIP_COMPLETED';
+
+SELECT id, reason
+FROM drive_wise.points_ledger;
+
+SELECT setval(
+               'trips_seq',
+               (SELECT MAX(id) FROM drive_wise.trips)
+       );

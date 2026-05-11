@@ -5,9 +5,11 @@ import com.project.drivewise.entities.enums.PointsReason;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface PointsLedgerRepository extends JpaRepository<PointsLedger, Long> {
 
     List<PointsLedger> findByUserId(long userId);

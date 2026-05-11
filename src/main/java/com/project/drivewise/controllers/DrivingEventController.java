@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -25,9 +26,14 @@ public class DrivingEventController {
         return drivingEventService.findAll();
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     public List<DrivingEvent> findByUserId(@PathVariable long userId){
         return drivingEventService.findByUserId(userId);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<DrivingEvent> findById(@PathVariable long id){
+        return drivingEventService.findById(id);
     }
 
     @PostMapping

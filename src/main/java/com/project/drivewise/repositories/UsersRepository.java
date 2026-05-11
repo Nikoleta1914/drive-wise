@@ -2,16 +2,19 @@ package com.project.drivewise.repositories;
 
 import com.project.drivewise.entities.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
     Optional<Users> findByEmail(String email);
+
     Optional<Users> findByPhone(String phone);
 
     boolean existsByEmail(String email);
+
     boolean existsByPhone(String phone);
 
     Optional<Users> findById(Long id);

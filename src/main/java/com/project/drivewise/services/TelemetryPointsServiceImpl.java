@@ -29,8 +29,8 @@ public class TelemetryPointsServiceImpl implements TelemetryPointsService {
     }
 
     @Override
-    public void delete(TelemetryPoints telemetryPoint) {
-        telemetryPointRepository.delete(telemetryPoint);
+    public void deleteById(Long id) {
+        telemetryPointRepository.deleteById(id);
 
     }
 }

@@ -30,13 +30,13 @@ public class TelemetryPoints {
     @Column(name = "lng", nullable = false)
     private Double lng;
 
-    @Column(name = "speed_mps", nullable = false)
+    @Column(name = "speed_mps")
     private Double speedMps;
 
-    @Column(name = "heading_deg", nullable = false)
+    @Column(name = "heading_deg")
     private Double headingDeg;
 
-    @Column(name = "accuracy_m", nullable = false)
+    @Column(name = "accuracy_m")
     private Double accuracyM;
 
     @Enumerated(EnumType.STRING)

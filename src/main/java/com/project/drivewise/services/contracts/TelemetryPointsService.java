@@ -10,5 +10,5 @@ public interface TelemetryPointsService {
 
     TelemetryPoints save(TelemetryPoints telemetryPoint);
 
-    void delete(TelemetryPoints telemetryPoint);
+    void deleteById(Long id);
 }

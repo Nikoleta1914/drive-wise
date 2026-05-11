@@ -29,7 +29,7 @@ public class RewardRedemptionServiceImpl implements RewardRedemptionService {
     }
 
     @Override
-    public void delete(RewardRedemption rewardRedemption) {
-        rewardRedemptionRepository.delete(rewardRedemption);
+    public void deleteById(Long id) {
+        rewardRedemptionRepository.deleteById(id);
     }
 }

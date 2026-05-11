@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DrivingEventServiceImpl implements DrivingEventService {
@@ -19,6 +20,11 @@ public class DrivingEventServiceImpl implements DrivingEventService {
     @Autowired
     public DrivingEventServiceImpl(DrivingEventRepository drivingEventRepository) {
         this.drivingEventRepository = drivingEventRepository;
+    }
+
+    @Override
+    public Optional<DrivingEvent> findById(long id) {
+        return drivingEventRepository.findById(id);
     }
 
     @Override

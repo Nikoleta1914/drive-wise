@@ -125,6 +125,18 @@ CREATE TABLE IF NOT EXISTS drive_wise.points_ledger (
         REFERENCES drive_wise.driving_events(id)
 );
 
+UPDATE drive_wise.points_ledger
+SET reason = 'TRIP_BONUS'
+WHERE reason = 'TRIP_COMPLETED';
+
+UPDATE drive_wise.points_ledger
+SET reason = 'EVENT_PENALTY'
+WHERE reason = 'HARSH_BRAKE';
+
+UPDATE drive_wise.points_ledger
+SET reason = 'TRIP_BONUS'
+WHERE reason = 'SAFE_DRIVING';
+
 CREATE TABLE IF NOT EXISTS drive_wise.rewards (
     id BIGSERIAL PRIMARY KEY,
 

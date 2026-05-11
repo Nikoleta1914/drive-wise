@@ -28,9 +28,10 @@ public class TelemetryPointsController {
         return telemetryPointsService.save(telemetryPoints);
     }
 
-    @DeleteMapping
-    public String delete(@PathVariable TelemetryPoints telemetryPoints){
-        telemetryPointsService.delete(telemetryPoints);
-        return "Telemetry Points has been deleted.";
+
+    @DeleteMapping("/{id}")
+    public String deleteById(@PathVariable Long id) {
+        telemetryPointsService.deleteById(id);
+        return "success";
     }
 }

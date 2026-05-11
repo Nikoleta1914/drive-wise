@@ -29,9 +29,9 @@ public class RewardRedemptionController {
         return rewardRedemptionService.save(rewardRedemption);
     }
 
-    @DeleteMapping
-    public String delete(@PathVariable RewardRedemption rewardRedemption){
-        rewardRedemptionService.delete(rewardRedemption);
-        return "success.";
+    @DeleteMapping("/{id}")
+    public String deleteById(@PathVariable Long id){
+        rewardRedemptionService.deleteById(id);
+        return "success";
     }
 }
